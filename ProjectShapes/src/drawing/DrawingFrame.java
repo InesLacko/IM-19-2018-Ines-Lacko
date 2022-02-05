@@ -21,6 +21,7 @@ import javax.swing.JToggleButton;
 import javax.swing.JToolBar;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Font;
 
 public class DrawingFrame extends JFrame {
 
@@ -43,7 +44,7 @@ public class DrawingFrame extends JFrame {
 	public DrawingFrame() {
 		setTitle("Lacko Ines IM 19/2018");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 550, 450);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -58,26 +59,32 @@ public class DrawingFrame extends JFrame {
 		getContentPane().add(panel,BorderLayout.CENTER);
 		
 		 tglbtnSelected = new JToggleButton("Selected");
+		 tglbtnSelected.setFont(new Font("Times New Roman", Font.BOLD, 15));
 		toolBar.add(tglbtnSelected);
 		buttonGroup.add(tglbtnSelected);
 		
 		 tglbtnPoint = new JToggleButton("Point");
+		 tglbtnPoint.setFont(new Font("Times New Roman", Font.BOLD, 15));
 		toolBar.add(tglbtnPoint);
 		buttonGroup.add(tglbtnPoint);
 		
 		 tglbtnLine = new JToggleButton("Line");
+		 tglbtnLine.setFont(new Font("Times New Roman", Font.BOLD, 15));
 		toolBar.add(tglbtnLine);
 		buttonGroup.add(tglbtnLine);
 		
 		tglbtnRectangle = new JToggleButton("Rectangle");
+		tglbtnRectangle.setFont(new Font("Times New Roman", Font.BOLD, 15));
 		toolBar.add(tglbtnRectangle);
 		buttonGroup.add(tglbtnRectangle);
 		
 		 tglbtnCircle = new JToggleButton("Circle");
+		 tglbtnCircle.setFont(new Font("Times New Roman", Font.BOLD, 15));
 		toolBar.add(tglbtnCircle);
 		buttonGroup.add(tglbtnCircle);
 		
 		 tglbtnDonut = new JToggleButton("Donut");
+		 tglbtnDonut.setFont(new Font("Times New Roman", Font.BOLD, 15));
 		toolBar.add(tglbtnDonut);
 		buttonGroup.add(tglbtnDonut);
 		
@@ -85,6 +92,7 @@ public class DrawingFrame extends JFrame {
 		
 	
 		btnModify = new JButton("Modify");
+		btnModify.setFont(new Font("Times New Roman", Font.BOLD, 15));
 		btnModify.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 		modify();
@@ -93,6 +101,7 @@ public class DrawingFrame extends JFrame {
 		toolBar.add(btnModify);
 	
 		btnDelete = new JButton("Delete");
+		btnDelete.setFont(new Font("Times New Roman", Font.BOLD, 15));
 		btnDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			delete();

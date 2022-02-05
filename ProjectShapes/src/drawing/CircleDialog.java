@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 
 import javax.swing.JButton;
+import javax.swing.JColorChooser;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -30,13 +31,13 @@ public class CircleDialog extends JDialog {
 	private Circle circle;
 	private boolean checkAll;
 	private JTextField textFieldCenterY;
-
+	private JColorChooser colorC;
 	/**
 	 * Create the dialog.
 	 */
 	public CircleDialog() {
 		setTitle("Lacko Ines IM 19/2018");
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 850, 550);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -103,6 +104,14 @@ public class CircleDialog extends JDialog {
 			textFieldRadius.setColumns(10);
 		}
 		{
+			colorC = new JColorChooser();
+			GridBagConstraints gbc_colorC = new GridBagConstraints();
+			gbc_colorC.gridx = 2;
+			gbc_colorC.gridy = 4;
+			gbc_colorC.anchor = GridBagConstraints.NORTH;
+			contentPanel.add(colorC, gbc_colorC);
+		}
+		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
@@ -110,33 +119,7 @@ public class CircleDialog extends JDialog {
 				JButton okButton = new JButton("OK");
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						/*try {
-							if(textFieldCenterX.getText().trim().isEmpty() || textFieldRadius.getText().trim().isEmpty()) {
-								checkAll = false;
-								JOptionPane.showMessageDialog(contentPanel, "All values must be entered!", "Error", JOptionPane.ERROR_MESSAGE);
-							} 
-							else {
-								
-								if((Integer.parseInt(textFieldCenterX.getText().trim()) <= 0)) {
-									JOptionPane.showMessageDialog(contentPanel, "X coordinate of the start point must be greater than 0.", "Error", JOptionPane.ERROR_MESSAGE);
-								}
-								else if((Integer.parseInt(textFieldRadius.getText().trim()) <= 0)){
-									JOptionPane.showMessageDialog(contentPanel, "Y coordinate of the start point must be greater than 0.", "Error", JOptionPane.ERROR_MESSAGE);
-								}
-								
-							
-								else {
-									checkAll = true;
-									circle = new Circle (Integer.parseInt(textFieldCenterX.getText()), new Point(Integer.parseInt(textFieldRadius.getText()),Integer.parseInt(textFieldRadius.getText())),false);
-									setVisible(false);
-								}
-							}
-						} 
-						catch (NumberFormatException exception){
-							JOptionPane.showMessageDialog(contentPanel, "Incorrect data type", "Error", JOptionPane.ERROR_MESSAGE);
-						}
-					}
-				});*/
+						
 						try {
 							if(textFieldCenterX.getText().trim().isEmpty() || textFieldCenterY.getText().trim().isEmpty() || 
 									textFieldRadius.getText().trim().isEmpty()) {
@@ -159,6 +142,7 @@ public class CircleDialog extends JDialog {
 									circle = new Circle(Integer.parseInt(textFieldRadius.getText()),new Point(Integer.parseInt(textFieldCenterX.getText()),
 											Integer.parseInt(textFieldRadius.getText())),
 											false);
+									circle.setColor(colorC.getColor());
 									setVisible(false);
 								}
 							}

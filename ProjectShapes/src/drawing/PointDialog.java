@@ -22,6 +22,7 @@ import java.awt.event.ActionListener;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
+import java.awt.Font;
 
 public class PointDialog extends JDialog {
 
@@ -48,6 +49,7 @@ public class PointDialog extends JDialog {
 		contentPanel.setLayout(gbl_contentPanel);
 		{
 			JLabel lblX = new JLabel("XCordinate");
+			lblX.setFont(new Font("Times New Roman", Font.BOLD, 12));
 			GridBagConstraints gbc_lblX = new GridBagConstraints();
 			gbc_lblX.insets = new Insets(0, 0, 5, 5);
 			gbc_lblX.anchor = GridBagConstraints.EAST;
@@ -67,6 +69,7 @@ public class PointDialog extends JDialog {
 		}
 		{
 			JLabel lblY = new JLabel("YCordinate");
+			lblY.setFont(new Font("Times New Roman", Font.BOLD, 12));
 			GridBagConstraints gbc_lblY = new GridBagConstraints();
 			gbc_lblY.anchor = GridBagConstraints.EAST;
 			gbc_lblY.insets = new Insets(0, 0, 0, 5);

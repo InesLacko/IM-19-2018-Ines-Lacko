@@ -23,6 +23,7 @@ import java.awt.Insets;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Font;
 
 public class LineDialog extends JDialog {
 
@@ -40,7 +41,7 @@ public class LineDialog extends JDialog {
 	 */
 	public LineDialog() {
 		setTitle("Lacko Ines IM 19/2018");
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 850, 550);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -52,6 +53,7 @@ public class LineDialog extends JDialog {
 		contentPanel.setLayout(gbl_contentPanel);
 		{
 			JLabel lblStartX = new JLabel("StartX");
+			lblStartX.setFont(new Font("Times New Roman", Font.BOLD, 12));
 			GridBagConstraints gbc_lblStartX = new GridBagConstraints();
 			gbc_lblStartX.anchor = GridBagConstraints.EAST;
 			gbc_lblStartX.insets = new Insets(0, 0, 5, 5);
@@ -71,6 +73,7 @@ public class LineDialog extends JDialog {
 		}
 		{
 			JLabel lblStartY = new JLabel("StartY");
+			lblStartY.setFont(new Font("Times New Roman", Font.BOLD, 12));
 			GridBagConstraints gbc_lblStartY = new GridBagConstraints();
 			gbc_lblStartY.anchor = GridBagConstraints.EAST;
 			gbc_lblStartY.insets = new Insets(0, 0, 5, 5);
@@ -90,6 +93,7 @@ public class LineDialog extends JDialog {
 		}
 		{
 			JLabel lblEndX = new JLabel("EndX");
+			lblEndX.setFont(new Font("Times New Roman", Font.BOLD, 12));
 			GridBagConstraints gbc_lblEndX = new GridBagConstraints();
 			gbc_lblEndX.anchor = GridBagConstraints.EAST;
 			gbc_lblEndX.insets = new Insets(0, 0, 5, 5);
@@ -109,6 +113,7 @@ public class LineDialog extends JDialog {
 		}
 		{
 			JLabel lblEndY = new JLabel("EndY");
+			lblEndY.setFont(new Font("Times New Roman", Font.BOLD, 12));
 			GridBagConstraints gbc_lblEndY = new GridBagConstraints();
 			gbc_lblEndY.anchor = GridBagConstraints.EAST;
 			gbc_lblEndY.insets = new Insets(0, 0, 0, 5);
@@ -125,10 +130,16 @@ public class LineDialog extends JDialog {
 			contentPanel.add(textFieldEndY, gbc_textFieldEndY);
 			textFieldEndY.setColumns(10);
 		}
-		{
-			colorC = new JColorChooser();
-			contentPanel.add(colorC);
-		}
+		
+			{
+				colorC = new JColorChooser();
+				GridBagConstraints gbc_colorC = new GridBagConstraints();
+				gbc_colorC.gridx = 2;
+				gbc_colorC.gridy = 4;
+				gbc_colorC.anchor = GridBagConstraints.NORTH;
+				contentPanel.add(colorC, gbc_colorC);
+			}
+		
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));

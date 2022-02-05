@@ -22,6 +22,7 @@ import javax.swing.JTextField;
 import java.awt.Insets;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Font;
 
 public class RectangleDialog extends JDialog {
 
@@ -39,23 +40,45 @@ public class RectangleDialog extends JDialog {
 	 */
 	public RectangleDialog() {
 		setTitle("Lacko Ines IM 19/2018");
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 850, 550);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
-		getContentPane().add(contentPanel, BorderLayout.CENTER);
+		getContentPane().add(contentPanel, BorderLayout.NORTH);
 		GridBagLayout gbl_contentPanel = new GridBagLayout();
 		gbl_contentPanel.columnWidths = new int[]{0, 0, 0};
-		gbl_contentPanel.rowHeights = new int[]{0, 0, 0, 62, 0};
+		gbl_contentPanel.rowHeights = new int[]{0, 0, 0, 0, 0, 0};
 		gbl_contentPanel.columnWeights = new double[]{0.0, 1.0, Double.MIN_VALUE};
-		gbl_contentPanel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_contentPanel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		contentPanel.setLayout(gbl_contentPanel);
 		{
+			JLabel lblUpperLeftX = new JLabel("UpperLeftX");
+			lblUpperLeftX.setFont(new Font("Times New Roman", Font.BOLD, 12));
+			GridBagConstraints gbc_lblUpperLeftX = new GridBagConstraints();
+			gbc_lblUpperLeftX.insets = new Insets(0, 0, 5, 5);
+			gbc_lblUpperLeftX.anchor = GridBagConstraints.SOUTHEAST;
+			gbc_lblUpperLeftX.gridx = 0;
+			gbc_lblUpperLeftX.gridy = 0;
+			contentPanel.add(lblUpperLeftX, gbc_lblUpperLeftX);
+		}
+		{
+			textFieldUpperLeftX = new JTextField();
+			GridBagConstraints gbc_textFieldUpperLeftX = new GridBagConstraints();
+			gbc_textFieldUpperLeftX.anchor = GridBagConstraints.SOUTH;
+			gbc_textFieldUpperLeftX.insets = new Insets(0, 0, 5, 5);
+			gbc_textFieldUpperLeftX.fill = GridBagConstraints.HORIZONTAL;
+			gbc_textFieldUpperLeftX.gridx = 1;
+			gbc_textFieldUpperLeftX.gridy = 0;
+			contentPanel.add(textFieldUpperLeftX, gbc_textFieldUpperLeftX);
+			textFieldUpperLeftX.setColumns(10);
+		}
+		{
 			JLabel lblUpperLeftY = new JLabel("UpperLeftY");
+			lblUpperLeftY.setFont(new Font("Times New Roman", Font.BOLD, 12));
 			GridBagConstraints gbc_lblUpperLeftY = new GridBagConstraints();
 			gbc_lblUpperLeftY.anchor = GridBagConstraints.EAST;
 			gbc_lblUpperLeftY.insets = new Insets(0, 0, 5, 5);
 			gbc_lblUpperLeftY.gridx = 0;
-			gbc_lblUpperLeftY.gridy = 0;
+			gbc_lblUpperLeftY.gridy = 1;
 			contentPanel.add(lblUpperLeftY, gbc_lblUpperLeftY);
 		}
 		{
@@ -64,17 +87,18 @@ public class RectangleDialog extends JDialog {
 			gbc_textFieldUpperLeftY.insets = new Insets(0, 0, 5, 5);
 			gbc_textFieldUpperLeftY.fill = GridBagConstraints.HORIZONTAL;
 			gbc_textFieldUpperLeftY.gridx = 1;
-			gbc_textFieldUpperLeftY.gridy = 0;
+			gbc_textFieldUpperLeftY.gridy = 1;
 			contentPanel.add(textFieldUpperLeftY, gbc_textFieldUpperLeftY);
 			textFieldUpperLeftY.setColumns(10);
 		}
 		{
 			JLabel lblHeight = new JLabel("Height");
+			lblHeight.setFont(new Font("Times New Roman", Font.BOLD, 12));
 			GridBagConstraints gbc_lblHeight = new GridBagConstraints();
 			gbc_lblHeight.anchor = GridBagConstraints.EAST;
 			gbc_lblHeight.insets = new Insets(0, 0, 5, 5);
 			gbc_lblHeight.gridx = 0;
-			gbc_lblHeight.gridy = 1;
+			gbc_lblHeight.gridy = 2;
 			contentPanel.add(lblHeight, gbc_lblHeight);
 		}
 		{
@@ -83,17 +107,18 @@ public class RectangleDialog extends JDialog {
 			gbc_textFieldHeight.insets = new Insets(0, 0, 5, 5);
 			gbc_textFieldHeight.fill = GridBagConstraints.HORIZONTAL;
 			gbc_textFieldHeight.gridx = 1;
-			gbc_textFieldHeight.gridy = 1;
+			gbc_textFieldHeight.gridy = 2;
 			contentPanel.add(textFieldHeight, gbc_textFieldHeight);
 			textFieldHeight.setColumns(10);
 		}
 		{
 			JLabel lblWidth = new JLabel("Width");
+			lblWidth.setFont(new Font("Times New Roman", Font.BOLD, 12));
 			GridBagConstraints gbc_lblWidth = new GridBagConstraints();
 			gbc_lblWidth.anchor = GridBagConstraints.EAST;
 			gbc_lblWidth.insets = new Insets(0, 0, 5, 5);
 			gbc_lblWidth.gridx = 0;
-			gbc_lblWidth.gridy = 2;
+			gbc_lblWidth.gridy = 3;
 			contentPanel.add(lblWidth, gbc_lblWidth);
 		}
 		{
@@ -102,36 +127,16 @@ public class RectangleDialog extends JDialog {
 			gbc_textFieldWidth.insets = new Insets(0, 0, 5, 5);
 			gbc_textFieldWidth.fill = GridBagConstraints.HORIZONTAL;
 			gbc_textFieldWidth.gridx = 1;
-			gbc_textFieldWidth.gridy = 2;
+			gbc_textFieldWidth.gridy = 3;
 			contentPanel.add(textFieldWidth, gbc_textFieldWidth);
 			textFieldWidth.setColumns(10);
 		}
 		{
-			JLabel lblUpperLeftX = new JLabel("UpperLeftX");
-			GridBagConstraints gbc_lblUpperLeftX = new GridBagConstraints();
-			gbc_lblUpperLeftX.insets = new Insets(0, 0, 0, 5);
-			gbc_lblUpperLeftX.anchor = GridBagConstraints.SOUTHEAST;
-			gbc_lblUpperLeftX.gridx = 0;
-			gbc_lblUpperLeftX.gridy = 3;
-			contentPanel.add(lblUpperLeftX, gbc_lblUpperLeftX);
-		}
-		{
-			textFieldUpperLeftX = new JTextField();
-			GridBagConstraints gbc_textFieldUpperLeftX = new GridBagConstraints();
-			gbc_textFieldUpperLeftX.anchor = GridBagConstraints.SOUTH;
-			gbc_textFieldUpperLeftX.insets = new Insets(0, 0, 0, 5);
-			gbc_textFieldUpperLeftX.fill = GridBagConstraints.HORIZONTAL;
-			gbc_textFieldUpperLeftX.gridx = 1;
-			gbc_textFieldUpperLeftX.gridy = 3;
-			contentPanel.add(textFieldUpperLeftX, gbc_textFieldUpperLeftX);
-			textFieldUpperLeftX.setColumns(10);
-		}
-		{
 			colorC = new JColorChooser();
 			GridBagConstraints gbc_colorC = new GridBagConstraints();
-			//gbc_colorC.gridx = 2;
+			gbc_colorC.gridx = 2;
 			gbc_colorC.gridy = 4;
-			gbc_colorC.anchor = GridBagConstraints.SOUTH;
+			gbc_colorC.anchor = GridBagConstraints.NORTH;
 			contentPanel.add(colorC, gbc_colorC);
 		}
 		{

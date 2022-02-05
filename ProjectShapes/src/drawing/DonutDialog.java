@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 
 import javax.swing.JButton;
+import javax.swing.JColorChooser;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -20,6 +21,7 @@ import javax.swing.JTextField;
 import java.awt.Insets;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Font;
 
 public class DonutDialog extends JDialog {
 
@@ -30,6 +32,7 @@ public class DonutDialog extends JDialog {
 	private JTextField textFieldRadius;
 	private Donut donut;
 	private boolean checkAll;
+	 private JColorChooser colorC;
 	
 
 	/**
@@ -37,7 +40,7 @@ public class DonutDialog extends JDialog {
 	 */
 	public DonutDialog() {
 		setTitle("Lacko Ines IM 19/2018");
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 850, 550);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -49,6 +52,7 @@ public class DonutDialog extends JDialog {
 		contentPanel.setLayout(gbl_contentPanel);
 		{
 			JLabel lblCenterX = new JLabel("CenterX");
+			lblCenterX.setFont(new Font("Times New Roman", Font.BOLD, 12));
 			GridBagConstraints gbc_lblCenterX = new GridBagConstraints();
 			gbc_lblCenterX.anchor = GridBagConstraints.EAST;
 			gbc_lblCenterX.insets = new Insets(0, 0, 5, 5);
@@ -68,6 +72,7 @@ public class DonutDialog extends JDialog {
 		}
 		{
 			JLabel lblCenterY = new JLabel("CenterY");
+			lblCenterY.setFont(new Font("Times New Roman", Font.BOLD, 12));
 			GridBagConstraints gbc_lblCenterY = new GridBagConstraints();
 			gbc_lblCenterY.anchor = GridBagConstraints.EAST;
 			gbc_lblCenterY.insets = new Insets(0, 0, 5, 5);
@@ -87,6 +92,7 @@ public class DonutDialog extends JDialog {
 		}
 		{
 			JLabel lblInnerRadius = new JLabel("InnerRadius");
+			lblInnerRadius.setFont(new Font("Times New Roman", Font.BOLD, 12));
 			GridBagConstraints gbc_lblInnerRadius = new GridBagConstraints();
 			gbc_lblInnerRadius.insets = new Insets(0, 0, 5, 5);
 			gbc_lblInnerRadius.anchor = GridBagConstraints.EAST;
@@ -106,6 +112,7 @@ public class DonutDialog extends JDialog {
 		}
 		{
 			JLabel lblRadius = new JLabel("Radius");
+			lblRadius.setFont(new Font("Times New Roman", Font.BOLD, 12));
 			GridBagConstraints gbc_lblRadius = new GridBagConstraints();
 			gbc_lblRadius.anchor = GridBagConstraints.EAST;
 			gbc_lblRadius.insets = new Insets(0, 0, 0, 5);
@@ -121,6 +128,14 @@ public class DonutDialog extends JDialog {
 			gbc_textFieldRadius.gridy = 3;
 			contentPanel.add(textFieldRadius, gbc_textFieldRadius);
 			textFieldRadius.setColumns(10);
+		}
+		{
+			colorC = new JColorChooser();
+			GridBagConstraints gbc_colorC = new GridBagConstraints();
+			gbc_colorC.gridx = 2;
+			gbc_colorC.gridy = 4;
+			gbc_colorC.anchor = GridBagConstraints.NORTH;
+			contentPanel.add(colorC, gbc_colorC);
 		}
 		{
 			JPanel buttonPane = new JPanel();
@@ -156,6 +171,7 @@ public class DonutDialog extends JDialog {
 											Integer.parseInt(textFieldCenterY.getText())),
 											Integer.parseInt(textFieldInnerRadius.getText()),
 											Integer.parseInt(textFieldRadius.getText()), false);
+									donut.setColor(colorC.getColor());
 									setVisible(false);
 								}
 							}
@@ -235,5 +251,7 @@ public class DonutDialog extends JDialog {
 	public JPanel getContentPanel() {
 		return contentPanel;
 	}
+
+	 
 
 }
