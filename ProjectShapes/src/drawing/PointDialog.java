@@ -7,35 +7,35 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import geometry.Line;
+import geometry.Point;
+
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.GridBagConstraints;
 import javax.swing.JTextField;
 import java.awt.Insets;
+import java.awt.event.ActionListener;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.event.ActionEvent;
 
 public class PointDialog extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-	private JTextField textField;
-	private JTextField textField_1;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		try {
-			PointDialog dialog = new PointDialog();
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+	private JTextField textFieldX;
+	private JTextField textFieldY;
+	private Point point;
+	private boolean checkAll;
 
 	/**
 	 * Create the dialog.
 	 */
 	public PointDialog() {
+		setTitle("Lacko Ines IM 19/2018");
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -56,17 +56,17 @@ public class PointDialog extends JDialog {
 			contentPanel.add(lblX, gbc_lblX);
 		}
 		{
-			textField = new JTextField();
-			GridBagConstraints gbc_textField = new GridBagConstraints();
-			gbc_textField.insets = new Insets(0, 0, 5, 0);
-			gbc_textField.fill = GridBagConstraints.HORIZONTAL;
-			gbc_textField.gridx = 1;
-			gbc_textField.gridy = 0;
-			contentPanel.add(textField, gbc_textField);
-			textField.setColumns(10);
+			textFieldX = new JTextField();
+			GridBagConstraints gbc_textFieldX = new GridBagConstraints();
+			gbc_textFieldX.insets = new Insets(0, 0, 5, 0);
+			gbc_textFieldX.fill = GridBagConstraints.HORIZONTAL;
+			gbc_textFieldX.gridx = 1;
+			gbc_textFieldX.gridy = 0;
+			contentPanel.add(textFieldX, gbc_textFieldX);
+			textFieldX.setColumns(10);
 		}
 		{
-			JLabel lblY = new JLabel("Y");
+			JLabel lblY = new JLabel("YCordinate");
 			GridBagConstraints gbc_lblY = new GridBagConstraints();
 			gbc_lblY.anchor = GridBagConstraints.EAST;
 			gbc_lblY.insets = new Insets(0, 0, 0, 5);
@@ -75,13 +75,13 @@ public class PointDialog extends JDialog {
 			contentPanel.add(lblY, gbc_lblY);
 		}
 		{
-			textField_1 = new JTextField();
-			GridBagConstraints gbc_textField_1 = new GridBagConstraints();
-			gbc_textField_1.fill = GridBagConstraints.HORIZONTAL;
-			gbc_textField_1.gridx = 1;
-			gbc_textField_1.gridy = 1;
-			contentPanel.add(textField_1, gbc_textField_1);
-			textField_1.setColumns(10);
+			textFieldY = new JTextField();
+			GridBagConstraints gbc_textFieldY = new GridBagConstraints();
+			gbc_textFieldY.fill = GridBagConstraints.HORIZONTAL;
+			gbc_textFieldY.gridx = 1;
+			gbc_textFieldY.gridy = 1;
+			contentPanel.add(textFieldY, gbc_textFieldY);
+			textFieldY.setColumns(10);
 		}
 		{
 			JPanel buttonPane = new JPanel();
@@ -89,16 +89,91 @@ public class PointDialog extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton okButton = new JButton("OK");
+				okButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						try {
+							if(textFieldX.getText().trim().isEmpty() || textFieldY.getText().trim().isEmpty() 
+								) {
+								checkAll = false;
+								JOptionPane.showMessageDialog(contentPanel, "All values must be entered!", "Error", JOptionPane.ERROR_MESSAGE);
+							} 
+							else {
+								
+								if((Integer.parseInt(textFieldX.getText().trim()) <= 0)) {
+									JOptionPane.showMessageDialog(contentPanel, "X coordinate of the  point must be greater than 0.", "Error", JOptionPane.ERROR_MESSAGE);
+								}
+								else if((Integer.parseInt(textFieldY.getText().trim()) <= 0)){
+									JOptionPane.showMessageDialog(contentPanel, "Y coordinate of the point must be greater than 0.", "Error", JOptionPane.ERROR_MESSAGE);
+								}
+								
+								else {
+									checkAll = true;
+									point = new Point (Integer.parseInt(textFieldX.getText()), Integer.parseInt(textFieldY.getText()),false);
+									point.setColor(Color.RED);
+							
+									setVisible(false);
+								}
+							}
+						} 
+						catch (NumberFormatException exception){
+							JOptionPane.showMessageDialog(contentPanel, "Incorrect data type", "Error", JOptionPane.ERROR_MESSAGE);
+						}
+					}
+				});
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);
 			}
 			{
 				JButton cancelButton = new JButton("Cancel");
+				cancelButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						dispose();
+					}
+				});
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}
 		}
+		
+		
+		
+	}
+
+	public JTextField getTextFieldX() {
+		return textFieldX;
+	}
+
+	public void setTextFieldX(JTextField textFieldX) {
+		this.textFieldX = textFieldX;
+	}
+
+	public JTextField getTextFieldY() {
+		return textFieldY;
+	}
+
+	public void setTextFieldY(JTextField textFieldY) {
+		this.textFieldY = textFieldY;
+	}
+
+	public Point getPoint() {
+		return point;
+	}
+
+	public void setPoint(Point point) {
+		this.point = point;
+	}
+
+	public boolean isCheckAll() {
+		return checkAll;
+	}
+
+	public void setCheckAll(boolean checkAll) {
+		this.checkAll = checkAll;
+	}
+
+	public JPanel getContentPanel() {
+		return contentPanel;
 	}
 
 }

@@ -8,9 +8,8 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import geometry.Circle;
+import geometry.Donut;
 import geometry.Point;
-import geometry.Rectangle;
 
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
@@ -22,19 +21,21 @@ import java.awt.Insets;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class CircleDialog extends JDialog {
+public class DonutDialog extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
+	private JTextField textFieldInnerRadius;
 	private JTextField textFieldCenterX;
-	private JTextField textFieldRadius;
-	private Circle circle;
-	private boolean checkAll;
 	private JTextField textFieldCenterY;
+	private JTextField textFieldRadius;
+	private Donut donut;
+	private boolean checkAll;
+	
 
 	/**
 	 * Create the dialog.
 	 */
-	public CircleDialog() {
+	public DonutDialog() {
 		setTitle("Lacko Ines IM 19/2018");
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
@@ -42,15 +43,15 @@ public class CircleDialog extends JDialog {
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		GridBagLayout gbl_contentPanel = new GridBagLayout();
 		gbl_contentPanel.columnWidths = new int[]{0, 0, 0};
-		gbl_contentPanel.rowHeights = new int[]{0, 0, 0, 0};
+		gbl_contentPanel.rowHeights = new int[]{0, 0, 0, 0, 0};
 		gbl_contentPanel.columnWeights = new double[]{0.0, 1.0, Double.MIN_VALUE};
-		gbl_contentPanel.rowWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_contentPanel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		contentPanel.setLayout(gbl_contentPanel);
 		{
 			JLabel lblCenterX = new JLabel("CenterX");
 			GridBagConstraints gbc_lblCenterX = new GridBagConstraints();
-			gbc_lblCenterX.insets = new Insets(0, 0, 5, 5);
 			gbc_lblCenterX.anchor = GridBagConstraints.EAST;
+			gbc_lblCenterX.insets = new Insets(0, 0, 5, 5);
 			gbc_lblCenterX.gridx = 0;
 			gbc_lblCenterX.gridy = 0;
 			contentPanel.add(lblCenterX, gbc_lblCenterX);
@@ -85,12 +86,31 @@ public class CircleDialog extends JDialog {
 			textFieldCenterY.setColumns(10);
 		}
 		{
+			JLabel lblInnerRadius = new JLabel("InnerRadius");
+			GridBagConstraints gbc_lblInnerRadius = new GridBagConstraints();
+			gbc_lblInnerRadius.insets = new Insets(0, 0, 5, 5);
+			gbc_lblInnerRadius.anchor = GridBagConstraints.EAST;
+			gbc_lblInnerRadius.gridx = 0;
+			gbc_lblInnerRadius.gridy = 2;
+			contentPanel.add(lblInnerRadius, gbc_lblInnerRadius);
+		}
+		{
+			textFieldInnerRadius = new JTextField();
+			GridBagConstraints gbc_textFieldInnerRadius = new GridBagConstraints();
+			gbc_textFieldInnerRadius.insets = new Insets(0, 0, 5, 0);
+			gbc_textFieldInnerRadius.fill = GridBagConstraints.HORIZONTAL;
+			gbc_textFieldInnerRadius.gridx = 1;
+			gbc_textFieldInnerRadius.gridy = 2;
+			contentPanel.add(textFieldInnerRadius, gbc_textFieldInnerRadius);
+			textFieldInnerRadius.setColumns(10);
+		}
+		{
 			JLabel lblRadius = new JLabel("Radius");
 			GridBagConstraints gbc_lblRadius = new GridBagConstraints();
 			gbc_lblRadius.anchor = GridBagConstraints.EAST;
 			gbc_lblRadius.insets = new Insets(0, 0, 0, 5);
 			gbc_lblRadius.gridx = 0;
-			gbc_lblRadius.gridy = 2;
+			gbc_lblRadius.gridy = 3;
 			contentPanel.add(lblRadius, gbc_lblRadius);
 		}
 		{
@@ -98,7 +118,7 @@ public class CircleDialog extends JDialog {
 			GridBagConstraints gbc_textFieldRadius = new GridBagConstraints();
 			gbc_textFieldRadius.fill = GridBagConstraints.HORIZONTAL;
 			gbc_textFieldRadius.gridx = 1;
-			gbc_textFieldRadius.gridy = 2;
+			gbc_textFieldRadius.gridy = 3;
 			contentPanel.add(textFieldRadius, gbc_textFieldRadius);
 			textFieldRadius.setColumns(10);
 		}
@@ -110,55 +130,32 @@ public class CircleDialog extends JDialog {
 				JButton okButton = new JButton("OK");
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						/*try {
-							if(textFieldCenterX.getText().trim().isEmpty() || textFieldRadius.getText().trim().isEmpty()) {
-								checkAll = false;
-								JOptionPane.showMessageDialog(contentPanel, "All values must be entered!", "Error", JOptionPane.ERROR_MESSAGE);
-							} 
-							else {
-								
-								if((Integer.parseInt(textFieldCenterX.getText().trim()) <= 0)) {
-									JOptionPane.showMessageDialog(contentPanel, "X coordinate of the start point must be greater than 0.", "Error", JOptionPane.ERROR_MESSAGE);
-								}
-								else if((Integer.parseInt(textFieldRadius.getText().trim()) <= 0)){
-									JOptionPane.showMessageDialog(contentPanel, "Y coordinate of the start point must be greater than 0.", "Error", JOptionPane.ERROR_MESSAGE);
-								}
-								
-							
-								else {
-									checkAll = true;
-									circle = new Circle (Integer.parseInt(textFieldCenterX.getText()), new Point(Integer.parseInt(textFieldRadius.getText()),Integer.parseInt(textFieldRadius.getText())),false);
-									setVisible(false);
-								}
-							}
-						} 
-						catch (NumberFormatException exception){
-							JOptionPane.showMessageDialog(contentPanel, "Incorrect data type", "Error", JOptionPane.ERROR_MESSAGE);
-						}
-					}
-				});*/
 						try {
 							if(textFieldCenterX.getText().trim().isEmpty() || textFieldCenterY.getText().trim().isEmpty() || 
-									textFieldRadius.getText().trim().isEmpty()) {
+								textFieldInnerRadius.getText().trim().isEmpty() || textFieldRadius.getText().trim().isEmpty()) {
 								checkAll = false;
 								JOptionPane.showMessageDialog(contentPanel, "All values must be entered!", "Error", JOptionPane.ERROR_MESSAGE);
 							} 
 							else {
 								
 								if((Integer.parseInt(textFieldCenterX.getText().trim()) <= 0)) {
-									JOptionPane.showMessageDialog(contentPanel, "X coordinate of the center must be greater than 0.", "Error", JOptionPane.ERROR_MESSAGE);
+									JOptionPane.showMessageDialog(contentPanel, "X coordinate of the center of donut must be greater than 0.", "Error", JOptionPane.ERROR_MESSAGE);
 								}
 								else if((Integer.parseInt(textFieldCenterY.getText().trim()) <= 0)){
-									JOptionPane.showMessageDialog(contentPanel, "Y coordinate of the center must be greater than 0.", "Error", JOptionPane.ERROR_MESSAGE);
+									JOptionPane.showMessageDialog(contentPanel, "Y coordinate of the center of donut must be greater than 0.", "Error", JOptionPane.ERROR_MESSAGE);
+								}
+								else if((Integer.parseInt(textFieldInnerRadius.getText().trim()) <= 0)){
+									JOptionPane.showMessageDialog(contentPanel, "Inner radius must be greater than 0.", "Error", JOptionPane.ERROR_MESSAGE);
 								}
 								else if((Integer.parseInt(textFieldRadius.getText().trim()) <= 0)){
 									JOptionPane.showMessageDialog(contentPanel, "Radius must be greater than 0.", "Error", JOptionPane.ERROR_MESSAGE);
 								}
 								else {
 									checkAll = true;
-									circle = new Circle(Integer.parseInt(textFieldRadius.getText()),new Point(Integer.parseInt(textFieldCenterX.getText()),
-											Integer.parseInt(textFieldRadius.getText())),
-											false);
+									donut = new Donut(new Point(Integer.parseInt(textFieldCenterX.getText()), 
+											Integer.parseInt(textFieldCenterY.getText())),
+											Integer.parseInt(textFieldInnerRadius.getText()),
+											Integer.parseInt(textFieldRadius.getText()), false);
 									setVisible(false);
 								}
 							}
@@ -168,6 +165,8 @@ public class CircleDialog extends JDialog {
 						}
 					}
 				});
+					
+			
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);
@@ -185,12 +184,28 @@ public class CircleDialog extends JDialog {
 		}
 	}
 
+	public JTextField getTextFieldInnerRadius() {
+		return textFieldInnerRadius;
+	}
+
+	public void setTextFieldInnerRadius(JTextField textFieldInnerRadius) {
+		this.textFieldInnerRadius = textFieldInnerRadius;
+	}
+
 	public JTextField getTextFieldCenterX() {
 		return textFieldCenterX;
 	}
 
 	public void setTextFieldCenterX(JTextField textFieldCenterX) {
 		this.textFieldCenterX = textFieldCenterX;
+	}
+
+	public JTextField getTextFieldCenterY() {
+		return textFieldCenterY;
+	}
+
+	public void setTextFieldCenterY(JTextField textFieldCenterY) {
+		this.textFieldCenterY = textFieldCenterY;
 	}
 
 	public JTextField getTextFieldRadius() {
@@ -201,12 +216,12 @@ public class CircleDialog extends JDialog {
 		this.textFieldRadius = textFieldRadius;
 	}
 
-	public Circle getCircle() {
-		return circle;
+	public Donut getDonut() {
+		return donut;
 	}
 
-	public void setCircle(Circle circle) {
-		this.circle = circle;
+	public void setDonut(Donut donut) {
+		this.donut = donut;
 	}
 
 	public boolean isCheckAll() {
@@ -215,14 +230,6 @@ public class CircleDialog extends JDialog {
 
 	public void setCheckAll(boolean checkAll) {
 		this.checkAll = checkAll;
-	}
-
-	public JTextField getTextFieldCenterY() {
-		return textFieldCenterY;
-	}
-
-	public void setTextFieldCenterY(JTextField textFieldCenterY) {
-		this.textFieldCenterY = textFieldCenterY;
 	}
 
 	public JPanel getContentPanel() {
