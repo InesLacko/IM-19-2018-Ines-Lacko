@@ -1,6 +1,5 @@
+package stack;
 import java.awt.EventQueue;
-
-import stack.StackFrame;
 
 public class Main {
 
