@@ -63,23 +63,7 @@ public class StackFrame extends JFrame {
 		btnDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				DialogStack dialogCreate = new DialogStack();
-				/*
-				 * if (!defaultListModel.isEmpty()) { dialogCreate.checkAll = true;
-				 * 
-				 * 
-				 * dialogCreate.getTextFieldX().setText(Integer.toString(defaultListModel.get(0)
-				 * .getUpperLeft().getX()));
-				 * dialogCreate.getTextFieldY().setText(Integer.toString(defaultListModel.get(0)
-				 * .getUpperLeft().getY()));
-				 * dialogCreate.getTextFieldHeight().setText(Integer.toString(defaultListModel.
-				 * get(0).getHeight()));
-				 * dialogCreate.getTextFieldWidth().setText(Integer.toString(defaultListModel.
-				 * get(0).getWidth())); dialogCreate.setVisible(true);
-				 * 
-				 * 
-				 * defaultListModel.remove(0); } else { JOptionPane.showMessageDialog(null,
-				 * "There are no rectangles!", "Error", JOptionPane.ERROR_MESSAGE); }
-				 */
+				
 				if (!defaultListModel.isEmpty()) {
 					defaultListModel.remove(0);
 
