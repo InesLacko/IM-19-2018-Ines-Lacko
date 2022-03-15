@@ -29,6 +29,7 @@ public class SortFrm extends JFrame {
 	 * Create the frame.
 	 */
 	public SortFrm() {
+		setTitle("Ines Lacko IM 19/18");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -46,13 +47,13 @@ public class SortFrm extends JFrame {
 				dialog.setVisible(true);
 
 				if (dialog.checkAll) {
-					Rectangle r1 = new Rectangle(
+					Rectangle r = new Rectangle(
 							new Point(Integer.parseInt(dialog.getTextFieldX().getText().toString()),
 									Integer.parseInt(dialog.getTextFieldY().getText().toString())),
 							(Integer.parseInt(dialog.getTextFieldHeight().getText().toString())),
 							(Integer.parseInt(dialog.getTextFieldWidth().getText().toString())));
 
-					defaultListModel.add(0,r1);
+					defaultListModel.add(0,r);
 				}
 			}
 		});
